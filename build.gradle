@@ -25,6 +25,7 @@ repositories {
 	maven {
 		url = 'https://maven.architectury.dev'
 	}
+	maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
 dependencies {
@@ -35,6 +36,8 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	modImplementation 'me.lucko:fabric-permissions-api:0.2-SNAPSHOT'
 
 	modImplementation "curse.maven:cobblemon-687131:${property("cobblemon_curse_file_id")}"
 

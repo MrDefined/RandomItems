@@ -1,10 +1,5 @@
 package com.frontiermc.randomitem.commands;
 
-import com.cobblemon.mod.common.CobblemonBlockEntities;
-import com.cobblemon.mod.common.CobblemonEntities;
-import com.cobblemon.mod.common.CobblemonItems;
-import com.cobblemon.mod.common.api.events.CobblemonEvents;
-import com.cobblemon.mod.fabric.CobblemonFabric;
 import com.frontiermc.randomitem.utils.Config;
 import com.frontiermc.randomitem.utils.Utils;
 import com.mojang.brigadier.Command;
@@ -13,35 +8,24 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import net.minecraft.block.Material;
+import me.lucko.fabric.api.permissions.v0.Permissions;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.EntityArgumentType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
-
-import java.util.ArrayList;
-
-import static com.frontiermc.randomitem.utils.Utils.evoitems;
 import static com.frontiermc.randomitem.utils.Utils.regex;
 
 public class RandomItemCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
-        dispatcher.register(CommandManager.literal("randomitem").then(CommandManager.argument("player",
+        dispatcher.register(CommandManager.literal("randomitem").requires(Permissions.require("randomitems.command.randomitem")).then(CommandManager.argument("player",
                         EntityArgumentType.player())
                 .then(CommandManager.argument("type", StringArgumentType.string())
                         .then(CommandManager.argument("amount", IntegerArgumentType.integer())
                                 .executes(RandomItemCommand::sendRandomAmount))
                         .executes(RandomItemCommand::sendRandom))));
-    }
-
-    private static int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
-        return 1;
     }
 
     private static int sendRandomAmount(CommandContext<ServerCommandSource> commandSourceCommandContext)
@@ -101,12 +85,20 @@ public class RandomItemCommand {
                 break;
             case "evoitem":
                 for (int x = 0; x < inputNum; x++) {
-                    ItemStack evoitem = new ItemStack(Utils.randomEvoitems());
+                    ItemStack evoitem = new ItemStack(Utils.randomEvoitem());
                     cmdPlayer.sendMessage(Text.literal("§6You received " + evoitem.getCount() + " §d" + evoitem.getName().getString() + "§6."));
                     cmdPlayer.giveItemStack(evoitem);
                     //pokeballs.add(evostone.getItem());
                 }
                 break;
+            /*case "helditem":
+                for (int x = 0; x < inputNum; x++) {
+                    ItemStack helditem = new ItemStack(Utils.randomHelditem());
+                    cmdPlayer.sendMessage(Text.literal("§6You received " + helditem.getCount() + " §d" + helditem.getName().getString() + "§6."));
+                    cmdPlayer.giveItemStack(helditem);
+                    //pokeballs.add(evostone.getItem());
+                }
+                break;*/
             default:
                 cmdPlayer.sendMessage(Text.literal(regex("§cInvalid argument.")));
                 //cmdPlayer.sendMessage(new StringTextComponent(regex(getUsage(sender))));

@@ -30,7 +30,8 @@
     "fabricloader": ">=0.14.10",
     "fabric": "*",
     "minecraft": "1.19.2",
-    "cobblemon": ">=1.2.0+1.19.2"
+    "cobblemon": ">=1.2.0+1.19.2",
+    "fabric-permissions-api-v0": "*"
   },
   "suggests": {
     "another-mod": "*"

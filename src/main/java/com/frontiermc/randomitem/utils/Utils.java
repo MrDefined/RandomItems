@@ -8,6 +8,7 @@ import com.cobblemon.mod.common.item.CobblemonItem;
 import com.cobblemon.mod.common.item.CobblemonItemGroups;
 import com.cobblemon.mod.common.item.PokeBallItem;
 import com.cobblemon.mod.common.pokeball.PokeBall;
+import com.cobblemon.mod.common.registry.CompletableRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
@@ -44,6 +45,7 @@ public class Utils {
     public static ArrayList<PokeBall> pokeballs = new ArrayList<>();
     public static ArrayList<Item> evostones = new ArrayList<>();
     public static ArrayList<Item> evoitems = new ArrayList<>();
+    public static ArrayList<Item> helditems = new ArrayList<>();
 
     public static void loadLists() {
 
@@ -113,7 +115,7 @@ public class Utils {
         }
     }
 
-    public static Item randomEvoitems() {
+    public static Item randomEvoitem() {
         while (true) {
             Item evoitem = evoitems.get(new Random().nextInt(evoitems.size())).asItem();
             //if (!blacklistedItemList().contains(pokeball.getName().toString())) {
@@ -121,6 +123,15 @@ public class Utils {
             //}
         }
     }
+
+    /*public static Item randomHelditem() {
+        while (true) {
+            Item helditem = helditems.get(new Random().nextInt(helditems.size())).asItem();
+            //if (!blacklistedItemList().contains(pokeball.getName().toString())) {
+            return helditem;
+            //}
+        }
+    }*/
 
     private static HashMap<Class<?>, List<Object>> classes = new HashMap<>();
 
