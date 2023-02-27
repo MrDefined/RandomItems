@@ -27,6 +27,7 @@ import net.minecraft.text.Text;
 
 import java.util.ArrayList;
 
+import static com.frontiermc.randomitem.utils.Utils.evoitems;
 import static com.frontiermc.randomitem.utils.Utils.regex;
 
 public class RandomItemCommand {
@@ -67,30 +68,44 @@ public class RandomItemCommand {
         }
         return Command.SINGLE_SUCCESS;
     }
-    public static ArrayList<Item> pokeballs = new ArrayList<>();
+    //public static ArrayList<Item> pokeballs = new ArrayList<>();
+    //public static ArrayList<Item> apricorns = new ArrayList<>();
     private static void execute(ServerPlayerEntity cmdPlayer, String type, int inputNum)
             throws IllegalAccessException {
         String msg = Config.receiverMsg;
         switch (type) {
             case "ball":
                 for (int x = 0; x < inputNum; x++) {
+                    //creates new ball itemstack
                     ItemStack ball = new ItemStack(Utils.randomBall());
                     cmdPlayer.sendMessage(Text.literal("§6You received " + ball.getCount() + " §d" + ball.getName().getString() + "§6."));
                     cmdPlayer.giveItemStack(ball);
-                    pokeballs.add(ball.getItem());
+                    //pokeballs.add(ball.getItem());
                 }
                 break;
             case "apricorn":
-                ItemStack apricorn = new ItemStack(Utils.randomApricorn());
-                if (inputNum != 0) {
-                    apricorn.setCount(inputNum);
+                for (int x = 0; x < inputNum; x++) {
+                    ItemStack apricorn = new ItemStack(Utils.randomApricorn());
+                    cmdPlayer.sendMessage(Text.literal("§6You received " + apricorn.getCount() + " §d" + apricorn.getName().getString() + "§6."));
+                    cmdPlayer.giveItemStack(apricorn);
+                    //apricorns.add(apricorn.getItem());
                 }
-                msg = msg.replace("<amount>", apricorn.getCount() + "");
-                msg = msg.replace("<item>", apricorn.getName().getString());
-                if (!msg.equals("")) {
-                    cmdPlayer.sendMessage(Text.literal(regex(msg)));
+                break;
+            case "evostone":
+                for (int x = 0; x < inputNum; x++) {
+                    ItemStack evostone = new ItemStack(Utils.randomEvostone());
+                    cmdPlayer.sendMessage(Text.literal("§6You received " + evostone.getCount() + " §d" + evostone.getName().getString() + "§6."));
+                    cmdPlayer.giveItemStack(evostone);
+                    //pokeballs.add(evostone.getItem());
                 }
-                cmdPlayer.giveItemStack(apricorn);
+                break;
+            case "evoitem":
+                for (int x = 0; x < inputNum; x++) {
+                    ItemStack evoitem = new ItemStack(Utils.randomEvoitems());
+                    cmdPlayer.sendMessage(Text.literal("§6You received " + evoitem.getCount() + " §d" + evoitem.getName().getString() + "§6."));
+                    cmdPlayer.giveItemStack(evoitem);
+                    //pokeballs.add(evostone.getItem());
+                }
                 break;
             default:
                 cmdPlayer.sendMessage(Text.literal(regex("§cInvalid argument.")));

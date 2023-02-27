@@ -42,11 +42,49 @@ public class Utils {
     }
 
     public static ArrayList<PokeBall> pokeballs = new ArrayList<>();
-    public static ArrayList<Item> evoitems = new ArrayList<>();
     public static ArrayList<Item> evostones = new ArrayList<>();
+    public static ArrayList<Item> evoitems = new ArrayList<>();
 
     public static void loadLists() {
+
+        //pokeballs array
         pokeballs.addAll(PokeBalls.INSTANCE.all());
+
+        //evostones array
+        evostones.add(CobblemonItems.INSTANCE.getDUSK_STONE().get());
+        evostones.add(CobblemonItems.INSTANCE.getDAWN_STONE().get());
+        evostones.add(CobblemonItems.INSTANCE.getFIRE_STONE().get());
+        evostones.add(CobblemonItems.INSTANCE.getICE_STONE().get());
+        evostones.add(CobblemonItems.INSTANCE.getLEAF_STONE().get());
+        evostones.add(CobblemonItems.INSTANCE.getMOON_STONE().get());
+        evostones.add(CobblemonItems.INSTANCE.getSHINY_STONE().get());
+        evostones.add(CobblemonItems.INSTANCE.getSUN_STONE().get());
+        evostones.add(CobblemonItems.INSTANCE.getTHUNDER_STONE().get());
+        evostones.add(CobblemonItems.INSTANCE.getWATER_STONE().get());
+
+        //evoitems array
+        evoitems.add(CobblemonItems.INSTANCE.getDUSK_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getDAWN_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getFIRE_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getICE_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getLEAF_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getMOON_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getOVAL_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getSHINY_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getSUN_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getTHUNDER_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getWATER_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getLINK_CABLE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getKINGS_ROCK().get());
+        evoitems.add(CobblemonItems.INSTANCE.getMETAL_COAT().get());
+        evoitems.add(CobblemonItems.INSTANCE.getBLACK_AUGURITE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getPROTECTOR().get());
+        evoitems.add(CobblemonItems.INSTANCE.getOVAL_STONE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getDRAGON_SCALE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getELECTIRIZER().get());
+        evoitems.add(CobblemonItems.INSTANCE.getMAGMARIZER().get());
+        evoitems.add(CobblemonItems.INSTANCE.getUPGRADE().get());
+        evoitems.add(CobblemonItems.INSTANCE.getDUBIOUS_DISC().get());
     }
     public static Item randomBall() {
         while (true) {
@@ -62,6 +100,24 @@ public class Utils {
             Apricorn apricorn = Apricorn.values()[ThreadLocalRandom.current().nextInt(Apricorn.values().length)];
             //if (!blacklistedItemList().contains(apricorn.item().getName().toString())) {
                 return apricorn.item();
+            //}
+        }
+    }
+
+    public static Item randomEvostone() {
+        while (true) {
+            Item evostone = evostones.get(new Random().nextInt(evostones.size())).asItem();
+            //if (!blacklistedItemList().contains(pokeball.getName().toString())) {
+            return evostone;
+            //}
+        }
+    }
+
+    public static Item randomEvoitems() {
+        while (true) {
+            Item evoitem = evoitems.get(new Random().nextInt(evoitems.size())).asItem();
+            //if (!blacklistedItemList().contains(pokeball.getName().toString())) {
+            return evoitem;
             //}
         }
     }
