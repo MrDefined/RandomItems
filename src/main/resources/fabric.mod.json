@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "id": "randomitem",
+  "version": "${version}",
+
+  "name": "RandomItems",
+  "description": "Give random items from Cobblemon via commands",
+  "authors": [
+    "MrDefined"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+
+  "license": "MIT License",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.frontiermc.randomitem.RandomItem"
+    ]
+  },
+  "mixins": [
+    "example.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.10",
+    "fabric": "*",
+    "minecraft": "1.19.2",
+    "cobblemon": ">=1.2.0+1.19.2"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
