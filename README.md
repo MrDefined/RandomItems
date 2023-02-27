@@ -1,3 +1,2 @@
 # RandomItems Mod
-Ported by MrDefined
-Original mod credits go to Blue
+Ported by MrDefined, original credits go to Blue
